@@ -1,0 +1,9 @@
+<div class="cemter container">
+	<h1 align="center">New Micropost</h1>
+	<div class="col-md-12">
+		<%= render 'form', micropost: @micropost %>
+			<div class="col-xs-4 col-xs-offset-4">
+				[ <%= link_to 'Back to All Post', microposts_path %> ]
+			</div>
+	</div>
+</div>	

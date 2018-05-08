@@ -1,0 +1,76 @@
+// Place all the styles related to the Users controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+$navbar-default-bg: #424949;
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+.navbar-default{
+	color:white!important;
+}
+#logo{
+	float:left;
+	color: #fff;
+	text-transform: uppercase;
+	letter-spacing: -1px;
+	font-weight: bold;
+}
+
+#logo:hover{
+	color: #ABB2B9;
+	text-decoration: none;
+}
+
+.center{
+	text-align: center;
+}
+
+.btn-xlarge{
+	font-weight:bold;
+	color: white!important;
+	font-size: 1.7em;
+	background-color: black;
+}
+
+#jumbotron1{
+	background-image: asset-url('jumbotron.jpg');
+	background-size: cover;
+	height: 550px; 
+}
+
+#jumbotron1 h1{
+	color: #fff!important;
+	text-align: center;
+	text-transform: uppercase;
+	font-weight: bold;	
+	margin-bottom: 30px;
+	letter-spacing: -1px;
+}
+
+#jumbotronP{
+	background-image: asset-url('posts.jpg');
+	background-size: cover;
+	height: 550px; 
+}
+
+#jumbotronP h1{
+	color: #fff!important;
+	text-align: center;
+	text-transform: uppercase;
+	font-weight: bold;	
+	margin-bottom: 30px;
+	letter-spacing: -1px;
+}
+
+footer{
+	text-align: center;
+	margin-top: 45px;
+	padding-top: 5px;
+	border-top: 1px solid #eaeaea;
+	color: #777;
+}
+
+a:hover{
+	background-color:#fff;
+}
