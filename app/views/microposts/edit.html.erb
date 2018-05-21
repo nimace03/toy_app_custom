@@ -3,8 +3,10 @@
 	<div class="col-md-12">
 		<%= render 'form', micropost: @micropost %>
 		<div class="col-xs-4 col-xs-offset-4">
-			[ <%= link_to 'Show', @micropost %> |
-			<%= link_to 'Back', microposts_path %> ]
+			<div class="post-actions">
+				[ <%= link_to 'Show', @micropost ,class: "btn btn-xs btn-primary"  %> |
+				<%= link_to 'View All Article', microposts_path, class: "btn btn-xs btn-success" %> ]
+			</div>
 		</div>
 	</div>
 </div>

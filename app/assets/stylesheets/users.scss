@@ -74,3 +74,28 @@ footer{
 a:hover{
 	background-color:#fff;
 }
+
+.post-title{
+	font-weight: bold;
+	font-size: 1.5em;
+}
+
+.post-title a{
+	color: #2E86C1;
+}
+
+.post-body{
+	border-top: 1px solid #eaeaea;
+	padding-top: 15px;
+	padding-bottom: 15px;
+}
+
+.post-actions a{
+	font-size: 1em;
+	color: white !important;
+}
+
+.post-meta-details{
+	border-top: 1px solid #eaeaea;
+	margin-top: 15px;
+}
