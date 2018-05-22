@@ -1,14 +1,22 @@
 <p id="notice"><%= notice %></p>
-
-<div class="well col-xs-8 col-xs-offset-2">
 	<h2 align="center">
-		<strong>Name: </strong>
-		<%= @user.name %>
+		<strong>Welcome to <%= @user.name %> Page</strong>
 	</h2>
-	<hr>
-	<h4 class="center description"><strong>Email:  <%= @user.email %></strong></h4>
+	
 	<div class="post-actions text-center">
-		<%= link_to 'Edit', edit_user_path(@user) ,class: "btn btn-xs btn-success" %> |
-		<%= link_to 'Back', users_path, class: "btn btn-xs btn-primary"%>
+		<h4 class="center description">
+			<strong>Email:  <%= @user.email %></strong>
+		</h4>
 	</div>
-</div>
+	<hr>
+	<div align="center">
+	  <%= will_paginate @user_posts %>
+	</div>
+	<h2 align="center"><%= @user.name %> Posts</h2>
+	<%= render 'microposts/micropost', obj: @user_posts %>
+	<div align="center">
+	  <%= will_paginate @user_posts %>
+	</div>		
+	
+		
+	

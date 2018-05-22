@@ -1,15 +1,18 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-
+  before_action :require_same_user, only:[:edit, :update, :destroy] 
+  before_action :require_admin, only: [:destroy]
   # GET /users
   # GET /users.json
   def index
-    @users = User.all
+    @users = User.paginate(:page => params[:page], :per_page => 5)
   end
 
   # GET /users/1
   # GET /users/1.json
   def show
+    @user = User.find(params[:id])
+    @user_posts = @user.microposts.paginate(:page => params[:page], :per_page => 5) 
   end
 
   # GET /users/new
@@ -28,6 +31,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
+        session[:user_id] = @user.id
         format.html { redirect_to @user, notice: 'User was successfully created.' }
         format.json { render :show, status: :created, location: @user }
       else
@@ -54,11 +58,10 @@ class UsersController < ApplicationController
   # DELETE /users/1
   # DELETE /users/1.json
   def destroy
+    @user = User.find(params[:id])
     @user.destroy
-    respond_to do |format|
-      format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    flash[:danger] = "User and All post is deleted"
+    redirect_to users_path
   end
 
   private
@@ -71,4 +74,21 @@ class UsersController < ApplicationController
     def user_params
       params.require(:user).permit(:name, :email, :password)
     end
+
+    # user restrict
+    def require_same_user
+      if current_user != @user and !current_user.admin?
+        flash[:danger] = "You are only allowed to modify your own Profile"
+        redirect_to root_path
+      end
+    end
+
+    # Admin action 
+    def require_admin
+      if logged_in? and !current_user.admin?
+        flash[:danger] = "Only Admin is allowed for this action"
+        redirect_to root_path
+      end
+    end
+
 end

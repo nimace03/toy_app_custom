@@ -4,31 +4,11 @@
   <h1>Microposts</h1>
   <%= link_to 'To Enter New Post', new_micropost_path ,class:"btn btn-primary btn-lg btn-xlarge" %>
 </div>
-
+<div align="center">
+	<%= will_paginate @microposts %>
+</div>
 <h1 class="text-center"> All Posts </h1>
-<% @microposts.each do |micropost| %>
-  <div class="row">
-    <div class="col-xs-8 col-xs-offset-2">
-      <div class="well well-lg">
-        <div class="post-title">
-          <%= link_to micropost.title, micropost %>  
-        </div>
-        <div class="post-body">
-          <%= truncate(micropost.content, length: 100) %>    
-          <div class="post-meta-details">
-            <small>
-              Created by: <%= micropost.user.name if micropost.user %> 
-              <%= time_ago_in_words(micropost.created_at) %> ago, 
-              last updated: <%= time_ago_in_words(micropost.updated_at) %> ago 
-            </small>
-          </div>
-        </div>
-        <div class="post-actions">
-          <%= link_to 'Edit this Post', edit_micropost_path(micropost) , class: "btn btn-xs btn-primary" %>
-          <%= link_to 'Delete this Post', micropost, method: :delete, data: { confirm: 'Are you sure?' } , class: "btn btn-xs btn-danger" %> 
-        </div>
-      </div>
-    </div>
-  </div>
-<% end %>
-  
+<%= render 'micropost', obj: @microposts %>
+<div align="center">
+	<%= will_paginate @microposts %>
+</div>

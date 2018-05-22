@@ -1,10 +1,12 @@
 class MicropostsController < ApplicationController
   before_action :set_micropost, only: [:show, :edit, :update, :destroy]
-
+  before_action :require_user, except: [:index, :show]
+  before_action :require_same_user, only: [:edit, :update, :destroy]
+  
   # GET /microposts
   # GET /microposts.json
   def index
-    @microposts = Micropost.all
+    @microposts = Micropost.paginate(:page => params[:page], :per_page => 5)
   end
 
   # GET /microposts/1
@@ -25,7 +27,7 @@ class MicropostsController < ApplicationController
   # POST /microposts.json
   def create
     @micropost = Micropost.new(micropost_params)
-
+    @micropost.user = current_user
     respond_to do |format|
       if @micropost.save
         format.html { redirect_to @micropost, notice: 'Micropost was successfully created.' }
@@ -71,4 +73,21 @@ class MicropostsController < ApplicationController
     def micropost_params
       params.require(:micropost).permit(:title, :content, :user_id)
     end
+
+    # restrict user
+    def require_user
+      if !logged_in?
+        flash[:danger] = "You must logged in to continue action"
+        redirect_to root_path
+      end
+    end
+
+    # restrict require_same_user
+    def require_same_user
+      if current_user != @micropost.user and !current_user.admin?
+        flash[:danger] = "You are only allowed to manipulate your own post"
+        redirect_to root_path
+      end
+    end
+    
 end
