@@ -1,5 +1,5 @@
 class	PagesController < ApplicationController
-	def home
+	def index
 		redirect_to microposts_path if logged_in?
 	end
 

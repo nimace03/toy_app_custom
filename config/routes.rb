@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'pages#home'
+  root 'pages#index'
   resources :microposts
   resources :users
   get 'signup', to: 'users#new'
