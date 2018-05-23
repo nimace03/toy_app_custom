@@ -1,9 +1,12 @@
 <p id="notice"><%= notice %></p>
 
-<div id="jumbotronP" class="center jumbotron">
-  <h1>Microposts</h1>
-  <%= link_to 'To Enter New Post', new_micropost_path ,class:"btn btn-primary btn-lg btn-xlarge" %>
-</div>
+<% if logged_in? %> 
+	<div id="jumbotronP" class="center jumbotron">
+	  <h1>Microposts</h1>
+	  <%= link_to 'To Enter New Post', new_micropost_path ,class:"btn btn-primary btn-lg btn-xlarge" %>
+	</div>
+<% end %>
+
 <div align="center">
 	<%= will_paginate @microposts %>
 </div>
