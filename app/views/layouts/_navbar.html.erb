@@ -26,7 +26,7 @@
       <ul class="nav navbar-nav navbar-right">
         <% if logged_in? %> <!-- if user not logged in -->
             <li><%= link_to "logout", logout_path, method: :get, style:"color:white!important;" %></li>
-            <li><%= link_to "View User Profile", current_user, style:"color:white!important;" %></li><li><%= "(Admin)" if current_user.admin? %></li>
+            <li><%= link_to "View User Profile", current_user, style:"color:white!important;" %></li><li>(<%= "Admin" if current_user.admin? %>)</li>
             <li><%= link_to "Edit User Profile", edit_user_path(current_user), style:"color:white!important;" %></li>
           <% else %>
               <li><%= link_to 'login', login_path, method: :get, style:"color:white!important;" %></li>
